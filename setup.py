@@ -12,13 +12,15 @@ import glob
 
 from setuptools import setup   # enables 'python setup.py develop'
 from distutils.extension import Extension
-import ConfigParser
+# import ConfigParser
+import configparser as ConfigParser
 
 import numpy as np
 
 DOCLINES = __doc__.split("\n")
 
-nlp_config = ConfigParser.SafeConfigParser()
+# nlp_config = ConfigParser.SafeConfigParser()
+nlp_config = ConfigParser.ConfigParser()
 nlp_config.read('site.cfg')
 
 
