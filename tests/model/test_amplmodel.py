@@ -295,7 +295,7 @@ class Test_GenTemplate(TestCase):
         dcheck.check(hess=True, chess=True)
         assert len(dcheck.grad_errs) == 0
         assert len(dcheck.hess_errs) == 0
-        for j in xrange(model.ncon):
+        for j in range(model.ncon):
             assert (len(dcheck.chess_errs[j]) == 0)
 
         model.compute_scaling_obj(g_max=1.)
@@ -317,7 +317,7 @@ class Test_GenTemplate(TestCase):
         dcheck.check(hess=True, chess=True)
         assert len(dcheck.grad_errs) == 0
         assert len(dcheck.hess_errs) == 0
-        for j in xrange(model.ncon):
+        for j in range(model.ncon):
             assert (len(dcheck.chess_errs[j]) == 0)
 
     def test_cons_scaling(self):
@@ -329,7 +329,7 @@ class Test_GenTemplate(TestCase):
         dcheck.check(hess=True, chess=True)
         assert len(dcheck.jac_errs) == 0
         assert len(dcheck.hess_errs) == 0
-        for j in xrange(model.ncon):
+        for j in range(model.ncon):
             assert (len(dcheck.chess_errs[j]) == 0)
 
         model.compute_scaling_cons(g_max=40.)
@@ -358,10 +358,10 @@ class Test_GenTemplate(TestCase):
         dcheck.check(hess=True, chess=True)
         assert len(dcheck.jac_errs) == 0
         assert len(dcheck.hess_errs) == 0
-        for j in xrange(model.ncon):
+        for j in range(model.ncon):
             assert (len(dcheck.chess_errs[j]) == 0)
 
-        print model.display_basic_info()
+        print( model.display_basic_info())
 
 
 class Test_AmplModelExtrasim(TestCase):
@@ -375,7 +375,7 @@ class Test_AmplModelExtrasim(TestCase):
         model = self.model
         assert model.islp() is True
         assert np.allclose(model.cost().to_array(), np.array([1., 0.]))
-        print model.display_basic_info()
+        print( model.display_basic_info())
 
     def test_obj_scaling(self):
         model = self.model
@@ -388,14 +388,14 @@ class Test_AmplModelExtrasim(TestCase):
         dcheck.check(hess=True, chess=True)
         assert len(dcheck.grad_errs) == 0
         assert len(dcheck.hess_errs) == 0
-        for j in xrange(model.ncon):
+        for j in range(model.ncon):
             assert (len(dcheck.chess_errs[j]) == 0)
 
         model.compute_scaling_obj(g_max=1.)
         assert model.scale_obj == 1.
         assert model.obj(model.x0) == 1.
         assert np.allclose(model.grad(model.x0), np.array([1., 0.]))
-        print model.cost()
+        print( model.cost())
         assert np.allclose(model.cost().to_array(), np.array([1., 0.]))
 
         model.compute_scaling_obj(reset=True)
@@ -413,7 +413,7 @@ class Test_AmplModelExtrasim(TestCase):
         dcheck.check(hess=True, chess=True)
         assert len(dcheck.grad_errs) == 0
         assert len(dcheck.hess_errs) == 0
-        for j in xrange(model.ncon):
+        for j in range(model.ncon):
             assert (len(dcheck.chess_errs[j]) == 0)
 
     def test_icons(self):
@@ -437,7 +437,7 @@ class Test_AmplModelExtrasim(TestCase):
         dcheck.check(hess=True, chess=True)
         assert len(dcheck.jac_errs) == 0
         assert len(dcheck.hess_errs) == 0
-        for j in xrange(model.ncon):
+        for j in range(model.ncon):
             assert (len(dcheck.chess_errs[j]) == 0)
 
         model.compute_scaling_cons(g_max=2.)
@@ -476,7 +476,7 @@ class Test_AmplModelExtrasim(TestCase):
         dcheck.check(hess=True, chess=True)
         assert len(dcheck.jac_errs) == 0
         assert len(dcheck.hess_errs) == 0
-        for j in xrange(model.ncon):
+        for j in range(model.ncon):
             assert (len(dcheck.chess_errs[j]) == 0)
 
-        print model.display_basic_info()
+        print( model.display_basic_info())

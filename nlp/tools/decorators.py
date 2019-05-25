@@ -64,7 +64,7 @@ def memoize_full(fcn):
                                    list(args) + kwargs.values()))
         if args_signature not in _cache:
             _cache[args_signature] = fcn(*args, **kwargs)
-        print _cache
+        print (_cache)
         return _cache[args_signature]
 
     return _memoized_fcn

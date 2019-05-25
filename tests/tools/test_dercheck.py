@@ -115,5 +115,5 @@ def test_erroneous(erroneous_checker):
     assert (np.allclose(erroneous_checker.jac_errs[(0, n-1)], 3.14 / 2))
 
     m = erroneous_checker.model.ncon
-    for j in xrange(m):
+    for j in range(m):
         assert (len(erroneous_checker.chess_errs[j]) == 0)

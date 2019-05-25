@@ -56,7 +56,7 @@ class C1LineModel(NLPModel):
                                           **kwargs)
         if tmin > tmax:
             # no intersection between the original bounds and the line
-            self.logger.warn("restricted model is infeasible")
+            self.logger.warning("restricted model is infeasible")
         self.__x = x
         self.__d = d
         self.__f = None  # most recent objective value of `model`

@@ -123,7 +123,7 @@ class DerivativeChecker(object):
         self.log.debug(self.head3)
         line = self.d3fmt % ('', gtdx, dfdx, err)
         if err > self.tol:
-            self.log.warn(line)
+            self.log.warning(line)
             errs['dir'] = dx
             errs['err'] = err
         else:
@@ -149,7 +149,7 @@ class DerivativeChecker(object):
         # Check partial derivatives in turn.
         xph = self.x.copy()
         xmh = self.x.copy()
-        for i in xrange(n):
+        for i in range(n):
             xph[i] += self.step
             xmh[i] -= self.step
             dfdxi = (model.obj(xph) - model.obj(xmh)) / (2 * self.step)
@@ -159,7 +159,7 @@ class DerivativeChecker(object):
             line = self.d1fmt % (0, i, gx[i], dfdxi, err)
 
             if err > self.tol:
-                self.log.warn(line)
+                self.log.warning(line)
                 errs[i] = err
             else:
                 self.log.debug(line)
@@ -178,7 +178,7 @@ class DerivativeChecker(object):
         errs = {}
 
         if isinstance(Hx, tuple):
-            self.log.warn("Hessian format not supported, using operator")
+            self.log.warning("Hessian format not supported, using operator")
             Hx = model.hop(self.x)
 
         if not hasattr(Hx, "__getitem__"):
@@ -191,7 +191,7 @@ class DerivativeChecker(object):
         # Check second partial derivatives in turn.
         xph = self.x.copy()
         xmh = self.x.copy()
-        for i in xrange(n):
+        for i in range(n):
             xph[i] += self.step
             xmh[i] -= self.step
             dgdx = (model.grad(xph) - model.grad(xmh)) / (2 * self.step)
@@ -200,7 +200,7 @@ class DerivativeChecker(object):
             if not hasattr(Hx, "__getitem__"):
                 ei[i] = 1
 
-            for j in xrange(i + 1):
+            for j in range(i + 1):
                 dgjdxi = dgdx[j]
 
                 if hasattr(Hx, "__getitem__"):
@@ -214,7 +214,7 @@ class DerivativeChecker(object):
 
                 line = self.d2fmt % (0, i, j, Hxij, dgjdxi, err)
                 if err > self.tol:
-                    self.log.warn(line)
+                    self.log.warning(line)
                     errs[(i, j)] = err
                 else:
                     self.log.debug(line)
@@ -250,7 +250,7 @@ class DerivativeChecker(object):
         # Check partial derivatives of each constraint in turn.
         xph = self.x.copy()
         xmh = self.x.copy()
-        for i in xrange(n):  # i = variable.
+        for i in range(n):  # i = variable.
             xph[i] += self.step
             xmh[i] -= self.step
             dcdxi = (model.cons(xph) - model.cons(xmh)) / (2 * self.step)
@@ -259,7 +259,7 @@ class DerivativeChecker(object):
             if not hasattr(Jx, "__getitem__"):
                 ei[i] = 1
 
-            for j in xrange(m):  # j = constraint.
+            for j in range(m):  # j = constraint.
                 dcjdxi = dcdxi[j]
 
                 if hasattr(Jx, "__getitem__"):
@@ -273,7 +273,7 @@ class DerivativeChecker(object):
 
                 line = self.d1fmt % (j + 1, i, Jxji, dcjdxi, err)
                 if err > self.tol:
-                    self.log.warn(line)
+                    self.log.warning(line)
                     errs[(j, i)] = err
                 else:
                     self.log.debug(line)
@@ -301,7 +301,7 @@ class DerivativeChecker(object):
         y = np.zeros(m)
         xph = self.x.copy()
         xmh = self.x.copy()
-        for k in xrange(m):
+        for k in range(m):
             y[k] = -1
             Hk = self.model.hess(self.x, y, obj_weight=0)
             errs[k] = {}
@@ -316,7 +316,7 @@ class DerivativeChecker(object):
                 ej = np.zeros(n)
 
             # Check second partial derivatives in turn.
-            for i in xrange(n):
+            for i in range(n):
                 xph[i] += self.step
                 xmh[i] -= self.step
                 dgdx = (self.model.igrad(k, xph) -
@@ -326,7 +326,7 @@ class DerivativeChecker(object):
                 if not hasattr(Hk, "__getitem__"):
                     ei[i] = 1
 
-                for j in xrange(i + 1):
+                for j in range(i + 1):
                     dgjdxi = dgdx[j]
 
                     if hasattr(Hk, "__getitem__"):
@@ -340,7 +340,7 @@ class DerivativeChecker(object):
 
                     line = self.d2fmt % (k + 1, i, j, Hkij, dgjdxi, err)
                     if err > self.tol:
-                        self.log.warn(line)
+                        self.log.warning(line)
                         errs[k][(i, j)] = err
                     else:
                         self.log.debug(line)

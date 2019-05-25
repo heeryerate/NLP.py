@@ -346,7 +346,7 @@ class NLPModel(object):
         gmaxNorm = 0            # holds the maximum row-norm of J
         imaxNorm = 0            # holds the corresponding index
         e = np.zeros(self.ncon)
-        for i in xrange(m):
+        for i in range(m):
             e[i] = 1
             giNorm = np.linalg.norm(J.T * e, np.inf)
             e[i] = 0

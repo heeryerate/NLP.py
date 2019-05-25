@@ -361,7 +361,7 @@ class Test_GenTemplate(TestCase):
         for j in xrange(model.ncon):
             assert (len(dcheck.chess_errs[j]) == 0)
 
-        print model.display_basic_info()
+        print( model.display_basic_info())
 
 
 class Test_AmplModelExtrasim(TestCase):
@@ -375,7 +375,7 @@ class Test_AmplModelExtrasim(TestCase):
         model = self.model
         assert model.islp() is True
         assert np.allclose(model.cost().to_array(), np.array([1., 0.]))
-        print model.display_basic_info()
+        print( model.display_basic_info())
 
     def test_obj_scaling(self):
         model = self.model
@@ -395,7 +395,7 @@ class Test_AmplModelExtrasim(TestCase):
         assert model.scale_obj == 1.
         assert model.obj(model.x0) == 1.
         assert np.allclose(model.grad(model.x0), np.array([1., 0.]))
-        print model.cost()
+        print( model.cost())
         assert np.allclose(model.cost().to_array(), np.array([1., 0.]))
 
         model.compute_scaling_obj(reset=True)
@@ -479,4 +479,4 @@ class Test_AmplModelExtrasim(TestCase):
         for j in xrange(model.ncon):
             assert (len(dcheck.chess_errs[j]) == 0)
 
-        print model.display_basic_info()
+        print( model.display_basic_info())

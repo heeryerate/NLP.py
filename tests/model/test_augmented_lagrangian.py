@@ -173,9 +173,9 @@ class AugmentedLagrangianHS10(object):
                            np.array([745., -1, 93]) + self.x)
 
     def test_dual_feasibility(self):
-        print self.model.model.grad(self.x)
+        print( self.model.model.grad(self.x))
 
-        print self.model.model.jop(self.x).to_array()
+        print( self.model.model.jop(self.x).to_array())
         assert np.allclose(self.model.dual_feasibility(self.x),
                            np.array([25., -1., 3.]))
 
